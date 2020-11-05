@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.itwillbs.mapper.BoardMapper">
+ 
+ 	<insert id="create">
+ 		insert into tbl_board (title,content,writer)
+ 		values (#{title},#{content},#{writer})
+ 	</insert>
+ 	
+ 	<select id="listAll" resultType="BoardVO">
+ 		<![CDATA[
+ 		select  
+ 			bno, title, content, writer, regdate, viewcnt
+ 		from
+ 		 tbl_board
+ 		where bno > 0
+ 		order by bno desc, regdate desc
+ 		]]> 	
+ 	</select>
+ 
+ <!-- where bno > 0 : 위험 
+ 		-> xml은 태그를 지정해서 사용하기 때문에 부등호(>)를 닫는 태그로 인식할 수 있다.
+   -->
+   
+   <select id="detail" resultType="BoardVO">
+   	  select *
+   	  from tbl_board
+   	  where bno = #{bno}
+   
+   </select>
+   
+   <update id="update">
+   		update tbl_board set title=#{title}, content=#{content}, writer=#{writer}
+		 where bno=#{bno}   
+   </update>
+   
+   <delete id="delete">
+   		delete from tbl_board where bno=#{bno}
+   </delete>
+   
+   <!-- 특정페이지 정보를 10개씩 가져오기 -->
+   <select id="listPage"  resultType="BoardVO">
+   		select
+   		*
+   		from
+   		 tbl_board
+   		order by bno desc, regdate desc 
+   		 limit #{page},10 
+   </select>
+   
+   <!-- 특정페이지 정보를 지정한 크기만큼 가져오기 -->
+   <select id="listCri"  resultType="BoardVO">
+   		select
+   		*
+   		from
+   		 tbl_board
+   		order by bno desc, regdate desc 
+   		 limit #{pageStart},#{pageSize}
+   </select>
+   
+   
+   <select id="pageCount" resultType="int">
+   	 select 
+   	  count(*)
+   	 from
+   	  tbl_board 
+   </select>
+   
+   
+   
+   
+   
+   
+ 
+ </mapper> 

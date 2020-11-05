@@ -1,0 +1,19 @@
+
+// 스프링에 대한 동작이 안나타날 때 (info 등)
+
+프로젝틍 우클릭 -> 속성 -> Deployment Assembly -> Add -> Java BuildPath -> Maven Dependency 추가 
+
+
+
+// 스터디 스프링 -> 스프링보드로 pom.xml 복사 
+        -> 인젝션 밑 서블릿 부터 추가 라이브러리 까지 복사
+        -> 인젝션 밑 서블릿- 테스트부터 (디펜던시즈 위까지 붙여넣기) 
+        
+// src/main/resource 에서 파일3개 가져와서 붙이기   
+
+// root-context.xml
+1. namespace - aop, beans, context, jdbx, mybatis-spring 체크      
+2. 
+
+// 탬플릿
+1. adminLTE 검색
